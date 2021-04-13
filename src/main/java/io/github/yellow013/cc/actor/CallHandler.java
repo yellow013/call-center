@@ -7,7 +7,7 @@ import io.github.yellow013.cc.msg.CallResult;
 
 @FunctionalInterface
 public interface CallHandler extends Function<Call, CallResult> {
-
+	
 	CallResult onCall(Call call);
 
 	@Override

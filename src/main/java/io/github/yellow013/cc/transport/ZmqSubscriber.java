@@ -18,10 +18,7 @@ import org.zeromq.SocketType;
  */
 public final class ZmqSubscriber extends ZmqTransport implements Closeable, Runnable {
 
-	/**
-	 * topics
-	 */
-
+	// topics
 	private final String[] topics;
 
 	private final String name;
@@ -51,7 +48,7 @@ public final class ZmqSubscriber extends ZmqTransport implements Closeable, Runn
 		for (String topic : topics) {
 			socket.subscribe(topic.getBytes(Charset.defaultCharset()));
 		}
-		this.name = "Zmq::Sub$" + builder.addr + "/" + topics;
+		this.name = "zmq::sub$" + builder.addr + "/" + topics;
 	}
 
 	/**
@@ -88,6 +85,10 @@ public final class ZmqSubscriber extends ZmqTransport implements Closeable, Runn
 	@Override
 	protected SocketType getSocketType() {
 		return SocketType.SUB;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	/**

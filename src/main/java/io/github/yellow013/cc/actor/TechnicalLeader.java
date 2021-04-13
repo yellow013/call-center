@@ -2,17 +2,17 @@ package io.github.yellow013.cc.actor;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public final class ProductManager {
+public class TechnicalLeader {
 
-	public static final ProductManager INSTANCE = new ProductManager();
+	public static final TechnicalLeader INSTANCE = new TechnicalLeader();
 
 	// 提供自增编号
 	private static final AtomicInteger i = new AtomicInteger();
 
 	private final String name;
 
-	private ProductManager() {
-		this.name = "ProductManager[" + i.incrementAndGet() + "]";
+	private TechnicalLeader() {
+		this.name = "TechnicalLeader[" + i.incrementAndGet() + "]";
 	}
 
 	public String getName() {

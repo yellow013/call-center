@@ -11,14 +11,38 @@ import io.github.yellow013.cc.util.EpochSequence;
  */
 public class Call implements Comparable<Call> {
 
-	private final long seq;
-	private final int envelope;
-	private final String msg;
+	private long seq;
+	
+	// [0, 1, 2, 3, 4, 5, 6] Employees handle
+	// [7, 8] Technical Leader handle
+	// [all] Product Manager handle
+	private int envelope;
+	
+	private String msg;
 
-	private Call(int envelope, String msg) {
+	public Call() {
+	}
+
+	public Call(int envelope, String msg) {
 		this.seq = EpochSequence.allocate();
 		this.envelope = envelope;
 		this.msg = msg;
+	}
+
+	public Call setSeq(long seq) {
+		if (this.seq == 0)
+			this.seq = seq;
+		return this;
+	}
+
+	public Call setEnvelope(int envelope) {
+		this.envelope = envelope;
+		return this;
+	}
+
+	public Call setMsg(String msg) {
+		this.msg = msg;
+		return this;
 	}
 
 	public long getSeq() {
