@@ -1,7 +1,7 @@
 package io.github.yellow013.cc.component;
 
 import static io.github.yellow013.cc.transport.TransportConst.Addr;
-import static io.github.yellow013.cc.transport.TransportConst.Port;
+import static io.github.yellow013.cc.transport.TransportConst.ResultPort;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class ResultReceiver implements BiConsumer<byte[], byte[]>, Closeable {
 	private final ZmqSubscriber subscriber;
 
 	public ResultReceiver() {
-		this.subscriber = ZmqSubscriber.tcp(Addr, Port).setTopics("result").build(this);
+		this.subscriber = ZmqSubscriber.tcp(Addr, ResultPort).setTopics("result").build(this);
 	}
 
 	public void start() {
@@ -26,7 +26,7 @@ public class ResultReceiver implements BiConsumer<byte[], byte[]>, Closeable {
 	public void accept(byte[] t, byte[] m) {
 		String topic = new String(t);
 		String msg = new String(m);
-		System.out.println("recv -> " + topic + " : " + msg);
+		System.out.println("receive -> topic : " + topic + " , msg : " + msg);
 	}
 
 	@Override

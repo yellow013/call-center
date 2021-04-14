@@ -4,6 +4,8 @@ public interface TransportConst {
 
 	String Addr = "127.0.0.1";
 
-	int Port = 7777;
+	int CallPort = 7777;
+
+	int ResultPort = 7778;
 
 }

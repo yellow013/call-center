@@ -1,7 +1,7 @@
 package io.github.yellow013.cc.component;
 
 import static io.github.yellow013.cc.transport.TransportConst.Addr;
-import static io.github.yellow013.cc.transport.TransportConst.Port;
+import static io.github.yellow013.cc.transport.TransportConst.CallPort;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class CallProducer implements Runnable, Closeable {
 	private final ZmqPublisher<Call> publisher;
 
 	public CallProducer() {
-		this.publisher = ZmqPublisher.create(ZmqPubConfigurator.tcp(Addr, Port).setDefaultTopic("call"),
+		this.publisher = ZmqPublisher.create(ZmqPubConfigurator.tcp(Addr, CallPort).setDefaultTopic("call"),
 				call -> JsonWrapper.toJson(call).getBytes());
 	}
 

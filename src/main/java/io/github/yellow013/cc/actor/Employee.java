@@ -4,11 +4,12 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
+import io.github.yellow013.cc.component.ResultCollector;
 import io.github.yellow013.cc.msg.Call;
 import io.github.yellow013.cc.msg.CallResult;
 import io.github.yellow013.cc.util.Threads;
 
-public class Employees implements CallHandler, Runnable {
+public class Employee implements CallHandler, Runnable {
 
 	// 提供自增编号
 	private static final AtomicInteger i = new AtomicInteger();
@@ -17,15 +18,14 @@ public class Employees implements CallHandler, Runnable {
 
 	private final CallHandler superior;
 
-	private SynchronousQueue<Call> inHandle = new SynchronousQueue<>();
+	private final SynchronousQueue<Call> inHandle = new SynchronousQueue<>();
 
-	public Employees(CallHandler superior) {
+	private final ResultCollector collector;
+
+	public Employee(CallHandler superior, ResultCollector collector) {
 		this.name = "Employees[" + i.incrementAndGet() + "]";
 		this.superior = superior;
-	}
-
-	public String getName() {
-		return name;
+		this.collector = collector;
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class Employees implements CallHandler, Runnable {
 		try {
 			for (;;) {
 				Call call = inHandle.take();
-				new CallResult(call.getSeq(), 1, "Processed [" + call.getMsg() + "]");
+				collector.onEvent(new CallResult(call.getSeq(), 1, name + " processed [" + call.getMsg() + "]"));
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
