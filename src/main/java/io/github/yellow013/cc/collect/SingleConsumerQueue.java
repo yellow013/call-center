@@ -5,9 +5,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
 /**
+ * Single Consumer Queue base implements
+ * 
  * @author yellow013
+ * 
+ * @see <a></a>
  *
- * @param <T> Single Consumer Queue base implements
+ * @param <T> 
  */
 public abstract class SingleConsumerQueue<E> {
 

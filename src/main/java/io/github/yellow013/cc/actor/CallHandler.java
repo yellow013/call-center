@@ -1,17 +1,17 @@
 package io.github.yellow013.cc.actor;
 
-import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import io.github.yellow013.cc.msg.Call;
 
 @FunctionalInterface
-public interface CallHandler extends Consumer<Call> {
+public interface CallHandler extends Predicate<Call> {
 
-	void onCall(Call call);
+	boolean onCall(Call call);
 
 	@Override
-	default void accept(Call t) {
-		onCall(t);
+	default boolean test(Call t) {
+		return onCall(t);
 	}
 
 }

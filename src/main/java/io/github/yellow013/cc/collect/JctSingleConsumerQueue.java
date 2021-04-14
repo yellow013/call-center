@@ -12,14 +12,14 @@ import org.slf4j.LoggerFactory;
 import io.github.yellow013.cc.util.Threads;
 
 /**
+ * 
+ * Single Consumer Queue
+ * 
  * @author yellow013
  *
- * @see <a></a>
+ * @see <a>https://github.com/yellow013/mercury/blob/master/commons/commons-concurrent/src/main/java/io/mercury/common/concurrent/queue/jct/JctSingleConsumerQueue.java</a>
  * 
  * @param <T>
- * 
- *            Single Consumer Queue
- * 
  * 
  */
 public abstract class JctSingleConsumerQueue<E> extends SingleConsumerQueue<E> {
@@ -259,13 +259,9 @@ public abstract class JctSingleConsumerQueue<E> extends SingleConsumerQueue<E> {
 		}
 
 	}
-	
+
 	public static void main(String[] args) {
-		
-		
-		
-		
+
 	}
-	
 
 }
