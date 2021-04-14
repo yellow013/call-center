@@ -3,6 +3,13 @@ package io.github.yellow013.cc.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+/**
+ * 
+ * @author yellow013
+ * 
+ * @see <a>https://github.com/yellow013/mercury/blob/master/serialization/serialization-json/src/main/java/io/mercury/serialization/json/JsonWrapper.java</a>
+ *
+ */
 public final class JsonWrapper {
 
 	// 普通JSON序列化

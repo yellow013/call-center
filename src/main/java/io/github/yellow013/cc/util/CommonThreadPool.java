@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 public final class CommonThreadPool extends ThreadPoolExecutor {
 
 	private BiConsumer<Thread, Runnable> beforeHandler;

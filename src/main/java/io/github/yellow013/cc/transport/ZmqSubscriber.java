@@ -180,7 +180,7 @@ public final class ZmqSubscriber extends ZmqTransport implements Closeable, Runn
 
 	public static void main(String[] args) {
 
-		try (ZmqSubscriber subscriber = ZmqSubscriber.tcp("127.0.0.1", 13001).setTopics("command").setIoThreads(2)
+		try (ZmqSubscriber subscriber = ZmqSubscriber.tcp("127.0.0.1", 5556).setTopics("call").setIoThreads(2)
 				.build((topic, msg) -> System.out.println(new String(topic) + "->" + new String(msg)))) {
 			subscriber.subscribe();
 		} catch (IOException e) {

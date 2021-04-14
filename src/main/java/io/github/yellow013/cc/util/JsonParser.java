@@ -10,6 +10,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.google.gson.JsonElement;
 
+/**
+ * 
+ * @author yellow013
+ * 
+ * @see <a>https://github.com/yellow013/mercury/blob/master/serialization/serialization-json/src/main/java/io/mercury/serialization/json/JsonParser.java</a>
+ *
+ */
 public final class JsonParser {
 
 	private static final ObjectMapper Mapper = new ObjectMapper()

@@ -195,12 +195,11 @@ public final class ZmqPublisher<T> extends ZmqTransport implements Closeable {
 
 	public static void main(String[] args) {
 
-		ZmqPubConfigurator configurator = ZmqPubConfigurator.tcp("127.0.0.1", 13001).setDefaultTopic("command")
+		ZmqPubConfigurator configurator = ZmqPubConfigurator.tcp("127.0.0.1", 5556).setDefaultTopic("call")
 				.setIoThreads(2);
 
 		try (ZmqPublisher<String> publisher = ZmqPublisher.create(configurator)) {
 			Random random = new Random();
-
 			for (;;) {
 				publisher.publish(String.valueOf(random.nextInt()));
 				Threads.sleep(1000);
