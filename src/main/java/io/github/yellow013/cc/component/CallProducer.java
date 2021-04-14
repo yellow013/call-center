@@ -28,7 +28,7 @@ public class CallProducer implements Runnable, Closeable {
 		for (;;) {
 			int envelope = Math.abs(random.nextInt()) % 10;
 			publisher.publish(new Call(envelope, "question : " + envelope));
-			Threads.sleep(500);
+			Threads.sleep(100);
 		}
 	}
 

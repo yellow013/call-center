@@ -5,6 +5,7 @@ import static io.github.yellow013.cc.transport.TransportConst.CallPort;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.function.BiConsumer;
 
 import io.github.yellow013.cc.actor.Employee;
@@ -24,14 +25,18 @@ public class CallDealer implements BiConsumer<byte[], byte[]>, Closeable {
 	private final TechnicalLeader tl;
 
 	private final Employee[] employees = new Employee[10];
+	
+	private final ThreadPoolExecutor threadPool;
 
 	public CallDealer() {
 		this.subscriber = ZmqSubscriber.tcp(Addr, CallPort).setTopics("call").build(this);
 		ResultCollector collector = new ResultCollector();
 		pm = new ProductManager(collector);
 		tl = new TechnicalLeader(pm, collector);
+		this.threadPool = Threads.newCommonThreadPool();
 		for (int i = 0; i < employees.length; i++) {
 			employees[i] = new Employee(tl, collector);
+			threadPool.execute(employees[i]);
 		}
 	}
 
@@ -59,6 +64,7 @@ public class CallDealer implements BiConsumer<byte[], byte[]>, Closeable {
 	@Override
 	public void close() throws IOException {
 		subscriber.close();
+		threadPool.shutdown();
 	}
 
 	public static void main(String[] args) {

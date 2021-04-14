@@ -1,6 +1,7 @@
 package io.github.yellow013.cc.actor;
 
 import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -51,6 +52,8 @@ public class Employee implements CallHandler, Runnable {
 	public void run() {
 		try {
 			for (;;) {
+				// 代表需要的处理时间
+				Threads.sleep(1200);
 				Call call = inHandle.take();
 				collector.onEvent(new CallResult(call.getSeq(), 1, name + " processed [" + call.getMsg() + "]"));
 			}
